@@ -12,6 +12,8 @@ urlpatterns = [
     # The home page
     path('', views.index, name='home'),
     path('NewPost', views.Create_NewPost, name="NewPost"),
+    path('MojStudio', views.MojStudio, name="Moj"),
+
 
     # Matches any html file
     re_path(r'^.*\.*', views.pages, name='pages'),

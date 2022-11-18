@@ -105,3 +105,27 @@ def Create_NewPost(request):
 
     return render(request, "home/NewPost.html", {"form": form, "msg": "msg"})
     # return HttpResponse(html_template.render(context, request))
+
+def MojStudio(request):
+    default_data = {'overall': {'New Viewers': '01', 'Views': '01', 'followers': '01', 'New Views pct': '01', 'Views Pct': '01', 'follow pct': '00'}, 'Analytics':{'TP': '01', 'TWH': '00', 'WL': [00, 00, 00, 00, 00, 00, 00, 00, 00, 0]}}
+    default_data = json.dumps(default_data)
+
+    try:
+        print(request.user)
+        print("\n\n", UserDetails.objects.filter(name=request.user))
+        stat = json.loads([col.post.replace("'", '"') for col in UserDetails.objects.filter(name=request.user)][0])
+        print( stat, type(stat), sep="\n")
+        # print(data_dic)
+        # print("\n\n", request.user)
+    except Exception as e:
+        stat = default_data
+        print(stat)
+        pass
+
+    stat = json.dumps(stat)
+    context = {'segment': 'index', 'stat': stat}
+
+    html_template = loader.get_template('home/moj.html')
+    # return render(context,request,"home/index.html", data)
+    return HttpResponse(html_template.render(context, request))
+    # return render(request, "home/moj.html", {"form": form, "msg": "msg"})
