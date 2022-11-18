@@ -4,7 +4,7 @@ This Dashboard Specially Designed for MOj and Sharechat to upload the content to
 ```
 ***Features:***
 ```
-1)Upload Image / Video contents through the Dashboard.
+1)Upload Video contents through the Dashboard.
 2)Different Analyticals can be done such as Post analytics and Profile analytics.
 3)Creator Guide
 ```
