@@ -125,7 +125,7 @@ def MojStudio(request):
     stat = json.dumps(stat)
     context = {'segment': 'index', 'stat': stat}
 
-    html_template = loader.get_template('home/index.html')
+    html_template = loader.get_template('home/moj.html')
     # return render(context,request,"home/index.html", data)
     return HttpResponse(html_template.render(context, request))
     # return render(request, "home/moj.html", {"form": form, "msg": "msg"})
