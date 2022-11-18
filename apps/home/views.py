@@ -10,7 +10,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 import json
-from apps.home.models import UserDetails
+from apps.home.models import UserDetails, MojDB
 from .post_forms import CreateNewPost
 import os
 from django.core.files.storage import FileSystemStorage
@@ -112,8 +112,8 @@ def MojStudio(request):
 
     try:
         print(request.user)
-        print("\n\n", UserDetails.objects.filter(name=request.user))
-        stat = json.loads([col.post.replace("'", '"') for col in UserDetails.objects.filter(name=request.user)][0])
+        print("\n\n", MojDB.objects.filter(name=request.user))
+        stat = json.loads([col.post.replace("'", '"') for col in MojDB.objects.filter(name=request.user)][0])
         print( stat, type(stat), sep="\n")
         # print(data_dic)
         # print("\n\n", request.user)
@@ -125,7 +125,7 @@ def MojStudio(request):
     stat = json.dumps(stat)
     context = {'segment': 'index', 'stat': stat}
 
-    html_template = loader.get_template('home/moj.html')
+    html_template = loader.get_template('home/index.html')
     # return render(context,request,"home/index.html", data)
     return HttpResponse(html_template.render(context, request))
     # return render(request, "home/moj.html", {"form": form, "msg": "msg"})
